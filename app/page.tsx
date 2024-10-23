@@ -1,5 +1,6 @@
+'use client'
+
 import {
-  ClerkProvider,
   SignInButton,
   SignedIn,
   SignedOut,
@@ -7,49 +8,17 @@ import {
 } from "@clerk/nextjs";
 import Link from 'next/link'
 import { Mic, FileText, Layout } from 'lucide-react'
+import Navbar from "@/components/navbar/page";
 
 // Main component for the home page
 export default function Home() {
   return (
-    // Wrap the entire component with ClerkProvider for authentication
-    <ClerkProvider>
+    <>
       {/* Main container with flex layout */}
       <div className="flex flex-col min-h-screen bg-gray-50">
 
         {/* Header section with navigation and authentication buttons */}
-        <header className="py-4 px-4 sm:px-6 lg:px-8 bg-white shadow-sm">
-          <div className="container mx-auto flex justify-between items-center">
-            {/* Logo/Home link */}
-            <Link href="/" className="text-2xl font-bold text-gray-800">
-              poc-it
-            </Link>
-            <nav>
-              <ul className="flex items-center space-x-6">
-                <li><Link href="#features" className="text-gray-600 hover:text-gray-900 transition-colors">Features</Link></li>
-                <li><Link href="#cta" className="text-gray-600 hover:text-gray-900 transition-colors">Get Started</Link></li>
-                <li>
-                  {/* Conditional rendering based on authentication state */}
-                  <SignedOut>
-                    <SignInButton mode="modal">
-                      <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors">
-                        Sign In
-                      </button>
-                    </SignInButton>
-                  </SignedOut>
-                  <SignedIn>
-                    <UserButton
-                      appearance={{
-                        elements: {
-                          avatarBox: "w-10 h-10"
-                        }
-                      }}
-                    />
-                  </SignedIn>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </header>
+        <Navbar />
 
         {/* Main content area */}
         <main className="flex-grow">
@@ -64,12 +33,19 @@ export default function Home() {
                 poc-it leverages AI to convert your spoken ideas into structured backlogs and visual wireframes, revolutionizing your product development process.
               </p>
               {/* CTA button */}
-              <Link
-                href="#cta"
-                className="bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-8 py-4 rounded-lg transition-colors inline-block"
-              >
-                Start Your Free Trial
-              </Link>
+              {/* Conditional rendering based on authentication state */}
+              <SignedOut>
+                <SignInButton mode="modal">
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors">
+                    Start Your Free Trial
+                  </button>
+                </SignInButton>
+              </SignedOut>
+              <SignedIn>
+                <button className="bg-gray-600 text-black font-semibold py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed">
+                  Start Your Free Trial
+                </button>
+              </SignedIn>
             </div>
           </section>
 
@@ -114,12 +90,19 @@ export default function Home() {
                 Join innovative product managers and developers who are already using poc-it to streamline their workflow and bring ideas to life faster.
               </p>
               {/* CTA button for sign up */}
-              <Link
-                href="/signup"
-                className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-block"
-              >
-                Start Your Free Trial Now
-              </Link>
+              {/* Conditional rendering based on authentication state */}
+              <SignedOut>
+                <SignInButton mode="modal">
+                  <button className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition-colors inline-block">
+                    Start Your Free Trial Now
+                  </button>
+                </SignInButton>
+              </SignedOut>
+              <SignedIn>
+                <button className="bg-gray-600 text-black font-semibold py-2 px-4 rounded disabled:opacity-50 disabled:cursor-not-allowed">
+                  Start Your Free Trial
+                </button>
+              </SignedIn>
             </div>
           </section>
         </main>
@@ -137,6 +120,6 @@ export default function Home() {
           </div>
         </footer>
       </div>
-    </ClerkProvider>
+    </>
   );
 }
