@@ -61,8 +61,10 @@ export default function PricingPage() {
     <>
       {/* Include the Navbar component */}
       <Navbar />
+
       <div className="min-h-screen bg-gray-50 py-20">
         <div className="container mx-auto px-4">
+
           {/* Pricing header section */}
           <div className="text-center mb-16">
             <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">Pricing</h2>
