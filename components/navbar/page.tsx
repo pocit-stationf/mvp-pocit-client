@@ -21,8 +21,8 @@ export default function Navbar() {
           </Link>
           <nav>
             <ul className="flex items-center space-x-6">
-              <li><Link href="#features" className="text-gray-600 hover:text-gray-900 transition-colors">Features</Link></li>
-              <li><Link href="/ui/pricing" className="text-gray-600 hover:text-gray-900 transition-colors">Pricing</Link></li>
+              <li><Link href="/" className="text-gray-600 hover:text-gray-900 transition-colors">Home</Link></li>
+              <li><Link href="/pricing" className="text-gray-600 hover:text-gray-900 transition-colors">Pricing</Link></li>
 
               {/* Conditional rendering based on authentication state */}
               <li>
